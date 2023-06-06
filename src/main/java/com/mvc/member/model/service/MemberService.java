@@ -1,28 +1,28 @@
-package com.mvc.employee.model.service;
+package com.mvc.member.model.service;
 
-import com.mvc.employee.model.dao.EmployeeDAO;
-import com.mvc.employee.model.dto.EmployeeDTO;
+import com.mvc.member.model.dao.MemberDAO;
+import com.mvc.member.model.dto.MemberDTO;
 
 import java.sql.Connection;
 import java.util.List;
 
 import static com.mvc.common.jdbc.JDBCTemplate.*;
 
-public class EmployeeService {
+public class MemberService {
 
-    private final EmployeeDAO empDAO;
+    private final MemberDAO memberDAO;
 
-    public EmployeeService() {
-        empDAO = new EmployeeDAO();
+    public MemberService() {
+        memberDAO = new MemberDAO();
     }
 
-    public EmployeeDTO selectOneEmpById(String empId) {
+    public MemberDTO selectOneEmpById(String empId) {
 
         /* Connection 생성 */
         Connection con = getConnection();
 
         /* Connection과 함께 정보를 전달하여 조회한다. */
-        EmployeeDTO selectedEmp = empDAO.selectEmpById(con, empId);
+        MemberDTO selectedEmp = memberDAO.selectMemberByCode(con, empId);
 
         /* connection 닫기 */
         close(con);
@@ -32,14 +32,14 @@ public class EmployeeService {
     }
 
     /* 직원 정보 전체 조회용 메소드 */
-    public List<EmployeeDTO> selectAllEmp() {
+    public List<MemberDTO> selectAllMember() {
 
         /* Connection 생성 */
         Connection con = getConnection();
 
         /* 비지니스 로직 */
         /* 1. dao 호출하여 조회 */
-        List<EmployeeDTO> empList = empDAO.selectAllEmpList(con);
+        List<MemberDTO> empList = memberDAO.selectAllMemberList(con);
 
         /* Connection 닫기 */
         close(con);
@@ -48,14 +48,14 @@ public class EmployeeService {
         return empList;
     }
 
-    public String selectNewEmpId() {
+    public String selectNewMemberCode() {
 
         /* Connection 생성 */
         Connection con = getConnection();
 
         /* 비지니스 로직 */
         /* 1. dao 호출하여 조회 */
-        String newEmpId = empDAO.selectNewEmpId(con);
+        String newEmpId = memberDAO.selectNewMemberCode(con);
 
         /* Connection 닫기 */
         close(con);
@@ -65,11 +65,11 @@ public class EmployeeService {
     }
 
     /* 신규 사원 등록용 메소드 */
-    public int insertEmp(EmployeeDTO emp) {
+    public int insertMember(MemberDTO emp) {
 
         Connection con = getConnection();
 
-        int result = empDAO.insertEmp(con, emp);
+        int result = memberDAO.insertMember(con, emp);
 
         if (result > 0) {
             commit(con);
@@ -82,11 +82,11 @@ public class EmployeeService {
         return result;
     }
 
-    public int updateEmp(EmployeeDTO emp) {
+    public int updateMember(MemberDTO emp) {
 
         Connection con = getConnection();
 
-        int result = empDAO.updateEmp(con, emp);
+        int result = memberDAO.updateMember(con, emp);
 
         if (result > 0) {
             commit(con);
@@ -99,11 +99,11 @@ public class EmployeeService {
         return result;
     }
 
-    public int deleteEmp(String empId) {
+    public int deleteMember(String empId) {
 
         Connection con = getConnection();
 
-        int result = empDAO.deleteEmp(con, empId);
+        int result = memberDAO.deleteMember(con, empId);
 
         if (result > 0) {
             commit(con);
