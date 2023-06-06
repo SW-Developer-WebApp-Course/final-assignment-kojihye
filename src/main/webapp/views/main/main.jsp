@@ -7,14 +7,14 @@
     <jsp:include page="../common/header.jsp"/>
 
     <h3> 🩷회원 정보(MEMBER_INFO) 테이블에서 회원 코드(MEMBER_CODE)를 이용하여 회원 정보 조회해오기</h3>
-    <form action="employee/select">
+    <form action="/member/select">
         <label>조회할 회원 번호 : </label>
         <input type="text" name="memberCode" id="memberCode">
         <button type="submit">✔️조회하기</button>
     </form>
 
-    <h3> ❤️회원 정보(MEMBER_INFO) 테이블에서 회원 전체 정보 조회 : /employee/list (get)</h3>
-    <button onclick="location.href='${pageContext.servletContext.contextPath}/employee/list'">회원 정보 전체 조회하기</button>
+    <h3> ❤️회원 정보(MEMBER_INFO) 테이블에서 회원 전체 정보 조회 : /member/list (get)</h3>
+    <button onclick="location.href='${pageContext.servletContext.contextPath}/member/list'">회원 정보 전체 조회하기</button>
 
     <h3> 🧡회원 정보(MEMBER_INFO) 테이블에 신규 회원 정보 추가 : /employee/insert (post)</h3>
     <form action="${ pageContext.servletContext.contextPath }/employee/insert" method="post">
