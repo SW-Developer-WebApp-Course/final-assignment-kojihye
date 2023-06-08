@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mvc.member.model.dao.MemberDAO">
+
+    <resultMap id="memberResultMap" type="com.mvc.member.model.dto.MemberDTO">
+        <id property="memberCode" column="MEMBER_CODE"/>
+        <result property="memberName" column="MEMBER_NAME"/>
+        <result property="memberBirth" column="BIRTH_DATE"/>
+        <result property="divisionCode" column="DIVISION_CODE"/>
+        <result property="detailInfo" column="DETAIL_INFO"/>
+        <result property="contact" column="CONTACT"/>
+        <result property="teamCode" column="TEAM_CODE"/>
+        <result property="activeStatus" column="ACTIVE_STATUS"/>
+    </resultMap>
+
+    <!-- 전체 회원 목록을 조회하는 쿼리 -->
+    <select id="selectAllMembers" resultMap="memberResultMap">
+        SELECT *
+        FROM memberdb.MEMBER_INFO
+
+    </select>
+
+    <!-- 회원 코드로 해당 회원 정보를 조회하는 쿼리 -->
+    <select id="selectMemberByCode" resultMap="memberResultMap">
+        SELECT *
+        FROM memberdb.MEMBER_INFO
+        WHERE MEMBER_CODE = #{memberCode} AND ACTIVE_STATUS = 'Y'
+    </select>
+
+    <!-- 제품 정보를 등록하는 쿼리 -->
+    <insert id="insertMember">
+        INSERT INTO memberdb.MEMBER_INFO (
+            MEMBER_NAME,
+            BIRTH_DATE,
+            DIVISION_CODE,
+            DETAIL_INFO,
+            CONTACT,
+            TEAM_CODE,
+            ACTIVE_STATUS)
+        VALUES
+            (#{memberName},
+             #{memberBirth},
+             #{divisionCode},
+             #{detailInfo},
+             #{contact},
+             #{teamCode},
+             #{activeStatus})
+    </insert>
+
+    <!-- 회원 정보를 수정하는 쿼리 -->
+    <update id="updateMember">
+        UPDATE memberdb.MEMBER_INFO
+        SET MEMBER_NAME = #{memberName},
+            BIRTH_DATE = #{memberBirth},
+            DIVISION_CODE = #{divisionCode},
+            DETAIL_INFO = #{detailInfo},
+            CONTACT = #{contact},
+            TEAM_CODE = #{teamCode},
+            ACTIVE_STATUS = #{activeStatus}
+        WHERE MEMBER_CODE = #{memberCode}
+    </update>
+
+
+    <!-- 회원 정보를 삭제하는 쿼리 -->
+    <delete id="deleteMember">
+        DELETE FROM memberdb.MEMBER_INFO
+        WHERE MEMBER_CODE = #{memberCode}
+    </delete>
+
+
+
+</mapper>

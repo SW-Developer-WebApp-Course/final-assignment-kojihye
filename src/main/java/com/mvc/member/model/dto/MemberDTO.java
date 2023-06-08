@@ -9,22 +9,22 @@ public class MemberDTO implements java.io.Serializable {
     private String memberBirth; //생년월일
     private String divisionCode; //구매여부 구분코드
     private String detailInfo; //상세 정보
-    private String phone; //연락처
-    private int gradeCode; //소속(레벨) 코드
+    private String contact; //연락처
+    private int teamCode; //소속(레벨) 코드
     private String activeStatus; //활동 상태
 
     public MemberDTO() {
     }
 
-    public MemberDTO(String memberCode, String memberName, String memberBirth, String divisionCode, String phone, String detailInfo, String gradeCode, String activeStatus, int salary, double bonus, String managerId, Date hireDate, Date entDate, String entYn) {
+    public MemberDTO(String memberCode, String memberName, String memberBirth, String divisionCode, String contact, String detailInfo, String teamCode, String activeStatus, int salary, double bonus, String managerId, Date hireDate, Date entDate, String entYn) {
         super();
         this.memberCode = Integer.parseInt(memberCode);
         this.memberName = memberName;
         this.memberBirth = memberBirth;
         this.divisionCode = divisionCode;
-        this.phone = phone;
+        this.contact = contact;
         this.detailInfo = detailInfo;
-        this.gradeCode = Integer.parseInt(gradeCode);
+        this.teamCode = Integer.parseInt(teamCode);
         this.activeStatus = activeStatus;
     }
 
@@ -34,10 +34,10 @@ public class MemberDTO implements java.io.Serializable {
                 "memberCode=" + memberCode +
                 ", memberName='" + memberName + '\'' +
                 ", memberBirth='" + memberBirth + '\'' +
-                ", isPurchased='" + divisionCode + '\'' +
+                ", divisionCode='" + divisionCode + '\'' +
                 ", detailInfo='" + detailInfo + '\'' +
-                ", phone='" + phone + '\'' +
-                ", gradeCode=" + gradeCode +
+                ", phone='" + contact + '\'' +
+                ", gradeCode=" + teamCode +
                 ", activeStatus='" + activeStatus + '\'' +
                 '}';
     }
@@ -82,20 +82,20 @@ public class MemberDTO implements java.io.Serializable {
         this.detailInfo = detailInfo;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getContact() {
+        return contact;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
-    public int getGradeCode() {
-        return gradeCode;
+    public int getTeamCode() {
+        return teamCode;
     }
 
-    public void setGradeCode(int gradeCode) {
-        this.gradeCode = gradeCode;
+    public void setTeamCode(int teamCode) {
+        this.teamCode = teamCode;
     }
 
     public String getActiveStatus() {
