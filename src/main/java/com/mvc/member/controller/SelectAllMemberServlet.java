@@ -17,7 +17,7 @@ public class SelectAllMemberServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         MemberService memberService = new MemberService();
-        List<MemberDTO> memberList = memberService.selectAllMember();
+        List<MemberDTO> memberList = memberService.selectAllMembers();
 
         for(MemberDTO member : memberList) {
             System.out.println(member);
@@ -26,11 +26,11 @@ public class SelectAllMemberServlet extends HttpServlet {
         /* 조회 결과 성공 여부에 따른 뷰 결정 */
         String path = "";
         if(memberList != null) {
-            path = "/views/member/employeeList.jsp";
+            path = "/views/member/memberList.jsp";
             request.setAttribute("memberList", memberList);
         } else {
             path = "/views/common/errorPage.jsp";
-            request.setAttribute("message", "직원 목록 조회 실패!");
+            request.setAttribute("message", "회원 목록 조회 실패!");
         }
 
         request.getRequestDispatcher(path).forward(request, response);

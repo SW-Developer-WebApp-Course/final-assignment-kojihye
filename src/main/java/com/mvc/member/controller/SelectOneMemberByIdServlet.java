@@ -16,24 +16,24 @@ public class SelectOneMemberByIdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         /* 전달한 파라미터 꺼내기 */
-        String empId = request.getParameter("empId");
+        int memberCode = Integer.parseInt(request.getParameter("memberCode"));
 
-        System.out.println("empId : " + empId);
+        System.out.println("memberCode : " + memberCode);
 
-        /* 사번을 이용해 사원 정보를 조회하는 비지니스 로직 호출 */
+        /* 멤버코드을 이용해 회원 정보를 조회하는 비지니스 로직 호출 */
         MemberService empService = new MemberService();
-        MemberDTO selectedEmp = empService.selectOneEmpById(empId);
+        MemberDTO selectedMember = empService.selectMemberByCode(memberCode);
 
-        System.out.println("selectedEmp : " + selectedEmp);
+        System.out.println("selectedMember : " + selectedMember);
 
         /* 비지니스 로직 실행 결과에 따라 뷰 연결 */
         String path = "";
-        if(selectedEmp != null) {
-            path = "/WEB-INF/views/member/showEmpInfo.jsp";
-            request.setAttribute("selectedEmp", selectedEmp);
+        if(selectedMember != null) {
+            path = "/views/member/showMemberInfo.jsp";
+            request.setAttribute("selectedMember", selectedMember);
         } else {
-            path = "/WEB-INF/views/common/errorPage.jsp";
-            request.setAttribute("message", "직원 정보 조회 실패!");
+            path = "/views/common/errorPage.jsp";
+            request.setAttribute("message", "회원 정보 조회 실패!");
         }
 
         request.getRequestDispatcher(path).forward(request, response);

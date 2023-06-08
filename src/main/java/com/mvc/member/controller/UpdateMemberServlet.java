@@ -18,19 +18,37 @@ public class UpdateMemberServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         int memberCode = Integer.parseInt(request.getParameter("memberCode"));
-        java.sql.Date entDate = java.sql.Date.valueOf(request.getParameter("entDate"));
+        String memberName = request.getParameter("memberName");
+        String birthDate = request.getParameter("birthDate");
+        String divisionCode = request.getParameter("divisionCode");
+        String detailInfo = request.getParameter("detailInfo");
+        String contact = request.getParameter("contact");
+        int teamCode = Integer.parseInt(request.getParameter("teamCode"));
+        String activeStatus = request.getParameter("activeStatus");
+
+        MemberService memberService = new MemberService();
 
         MemberDTO member = new MemberDTO();
-        member.setMemberCode(memberCode);
 
-        int result = new MemberService().updateMember(member);
+        member.setMemberCode(memberCode);
+        member.setMemberName(memberName);
+        member.setMemberBirth(birthDate);
+        member.setDivisionCode(divisionCode);
+        member.setDetailInfo(detailInfo);
+        member.setContact(contact);
+        member.setTeamCode(teamCode);
+        member.setActiveStatus(activeStatus);
+
+        System.out.println("update request member = " + member);
+
+        boolean result = memberService.updateMember(member);
 
         String path = "";
-        if(result > 0) {
-            path = "/WEB-INF/views/common/successPage.jsp";
-            request.setAttribute("successCode", "updateEmp");
+        if(result) {
+            path = "/views/common/successPage.jsp";
+            request.setAttribute("successCode", "updateMember");
         } else {
-            path = "/WEB-INF/views/common/errorPage.jsp";
+            path = "/views/common/errorPage.jsp";
             request.setAttribute("message", "회원 정보 수정 실패!");
         }
 
