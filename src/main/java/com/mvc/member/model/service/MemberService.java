@@ -2,116 +2,90 @@ package com.mvc.member.model.service;
 
 import com.mvc.member.model.dao.MemberDAO;
 import com.mvc.member.model.dto.MemberDTO;
+import org.apache.ibatis.session.SqlSession;
 
-import java.sql.Connection;
+import java.io.PrintWriter;
 import java.util.List;
 
-import static com.mvc.common.jdbc.JDBCTemplate.*;
+import static com.mvc.common.Template.getSqlSession;
+
 
 public class MemberService {
 
-    private final MemberDAO memberDAO;
+    private MemberDAO memberDAO;
+
 
     public MemberService() {
-        memberDAO = new MemberDAO();
+        memberDAO = getSqlSession().getMapper(MemberDAO.class);
     }
 
-    public MemberDTO selectOneEmpById(String empId) {
+    SqlSession sqlSession = getSqlSession();
 
-        /* Connection 생성 */
-        Connection con = getConnection();
+    /* 1. 멤버 1명을 멤버코드로 조회하는 기능을 담은 메소드 */
+    public MemberDTO selectMemberByCode(int memberCode) {
 
-        /* Connection과 함께 정보를 전달하여 조회한다. */
-        MemberDTO selectedEmp = memberDAO.selectMemberByCode(con, empId);
+        memberDAO = sqlSession.getMapper(MemberDAO.class);
+        MemberDTO selectedMember = memberDAO.selectMemberByCode(memberCode);
+        sqlSession.close();
 
-        /* connection 닫기 */
-        close(con);
-
-        /* 조회 결과를 반환한다. */
-        return selectedEmp;
+        return selectedMember;
     }
 
-    /* 직원 정보 전체 조회용 메소드 */
-    public List<MemberDTO> selectAllMember() {
+    /* 2. 멤버 전체를 조회하는 기능을 담은 메소드 */
+    public List<MemberDTO> selectAllMembers() {
 
-        /* Connection 생성 */
-        Connection con = getConnection();
+        memberDAO = sqlSession.getMapper(MemberDAO.class);
+        List<MemberDTO> memberList = memberDAO.selectAllMembers();
+        sqlSession.close();
 
-        /* 비지니스 로직 */
-        /* 1. dao 호출하여 조회 */
-        List<MemberDTO> empList = memberDAO.selectAllMemberList(con);
-
-        /* Connection 닫기 */
-        close(con);
-
-        /* 수행 결과 반환 */
-        return empList;
+        return memberList;
     }
 
-    public String selectNewMemberCode() {
 
-        /* Connection 생성 */
-        Connection con = getConnection();
 
-        /* 비지니스 로직 */
-        /* 1. dao 호출하여 조회 */
-        String newEmpId = memberDAO.selectNewMemberCode(con);
+    /* 3. 새로운 멤버 1명을 등록하는 기능을 담은 메소드 */
+    public boolean insertMember(MemberDTO member) {
 
-        /* Connection 닫기 */
-        close(con);
+        memberDAO = sqlSession.getMapper(MemberDAO.class);
+        boolean result = memberDAO.insertMember(member);
 
-        /* 수행 결과 반환 */
-        return newEmpId;
-    }
-
-    /* 신규 사원 등록용 메소드 */
-    public int insertMember(MemberDTO emp) {
-
-        Connection con = getConnection();
-
-        int result = memberDAO.insertMember(con, emp);
-
-        if (result > 0) {
-            commit(con);
+        if(result) {
+            sqlSession.commit();
         } else {
-            rollback(con);
+            sqlSession.rollback();
         }
-
-        close(con);
+        sqlSession.close();
 
         return result;
     }
 
-    public int updateMember(MemberDTO emp) {
+    /* 4. 멤버 1명을 수정하는 기능을 담은 메소드 */
+    public boolean updateMember(MemberDTO member) {
 
-        Connection con = getConnection();
+        memberDAO = sqlSession.getMapper(MemberDAO.class);
+        boolean result = memberDAO.updateMember(member);
 
-        int result = memberDAO.updateMember(con, emp);
-
-        if (result > 0) {
-            commit(con);
+        if(result) {
+            sqlSession.commit();
         } else {
-            rollback(con);
+            sqlSession.rollback();
         }
-
-        close(con);
+        sqlSession.close();
 
         return result;
     }
+    /* 5. 멤버 1명을 멤버코드로 삭제하는 기능을 담은 메소드 */
+    public boolean deleteMember(int memberCode) {
 
-    public int deleteMember(String empId) {
+        memberDAO = sqlSession.getMapper(MemberDAO.class);
+        boolean result = memberDAO.deleteMember(memberCode);
 
-        Connection con = getConnection();
-
-        int result = memberDAO.deleteMember(con, empId);
-
-        if (result > 0) {
-            commit(con);
+        if(result) {
+            sqlSession.commit();
         } else {
-            rollback(con);
+            sqlSession.rollback();
         }
-
-        close(con);
+        sqlSession.close();
 
         return result;
     }
