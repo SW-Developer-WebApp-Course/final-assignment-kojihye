@@ -4,6 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-    <h1> >> Welcome to MVC land! << </h1>
+    <h1> >> 쇼핑몰 회원 조회/수정/삭제 << </h1>
 </body>
 </html>

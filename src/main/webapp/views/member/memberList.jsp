@@ -12,8 +12,8 @@
             <th>회원이름</th>
             <th>회원생년월일</th>
             <th>구매여부 구분코드</th>
-            <th>상세정보</th>
             <th>연락처</th>
+            <th>상세정보</th>
             <th>등급코드</th>
             <th>활동상태</th>
         </tr>
@@ -23,9 +23,9 @@
                 <td>${ member.memberName }</td>
                 <td>${ member.memberBirth }</td>
                 <td>${ member.divisionCode }</td>
-                <td>${ member.phone }</td>
+                <td>${ member.contact }</td>
                 <td>${ member.detailInfo }</td>
-                <td>${ member.gradeCode }</td>
+                <td>${ member.teamCode }</td>
                 <td>${ member.activeStatus }</td>
             </tr>
         </c:forEach>
