@@ -16,15 +16,15 @@
           switch(errorCode) {
               case 'insertMember' :
                   errorMessage = '신규 회원 등록 실패! 😰';
-                  movePath = '${pageContext.servletContext.contextPath}/member/list';
+                  movePath = '${pageContext.servletContext.contextPath}/member/insert';
                   break;
               case 'updateMember' :
                   errorMessage = '회원 정보 수정 실패! 😰';
-                  movePath = '${pageContext.servletContext.contextPath}/member/list';
+                  movePath = '${pageContext.servletContext.contextPath}/member/update';
                   break;
               case 'deleteMember' :
                   errorMessage = '회원 정보 삭제 실패! 😰';
-                  movePath = '${pageContext.servletContext.contextPath}/member/list';
+                  movePath = '${pageContext.servletContext.contextPath}/member/delete';
                   break;
           }
 
