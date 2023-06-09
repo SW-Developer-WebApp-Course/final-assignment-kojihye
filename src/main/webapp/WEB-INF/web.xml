@@ -5,10 +5,10 @@
          version="4.0">
     <context-param>
         <param-name>connection-info</param-name>
-        <param-value>/WEB-INF/config/connection-info.properties</param-value>
+        <param-value>/config/connection-info.properties</param-value>
     </context-param>
     <context-param>
         <param-name>mapper-location</param-name>
-        <param-value>/WEB-INF/mapper/</param-value>
+        <param-value>/com/mvc/member/model/dao/MemberDAO.xml</param-value>
     </context-param>
 </web-app>
