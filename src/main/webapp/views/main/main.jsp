@@ -62,7 +62,7 @@
         연락처 : <input type="tel" name="phoneNum"><br>
         등급코드 :
         <select name="gradeCode">
-            <option value="1">레드 다이아몬드</option>
+            <option value="1" disabled>레드 다이아몬드</option>
             <option value="2">다이아몬드</option>
             <option value="3">골드</option>
             <option value="4">실버</option>
