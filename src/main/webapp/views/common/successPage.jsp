@@ -14,15 +14,15 @@
       switch(successCode) {
         case 'insertMember' :
           successMessage = '신규 회원 등록 성공! 🥳';
-          movePath = '${pageContext.servletContext.contextPath}/member/insert';
+          movePath = '${pageContext.servletContext.contextPath}/member/list';
           break;
         case 'updateMember' :
           successMessage = '회원 정보 수정 성공! 🥳';
-          movePath = '${pageContext.servletContext.contextPath}/member/update';
+          movePath = '${pageContext.servletContext.contextPath}/member/list';
           break;
         case 'deleteMember' :
           successMessage = '회원 정보 삭제 성공! 🥳';
-          movePath = '${pageContext.servletContext.contextPath}/member/delete';
+          movePath = '${pageContext.servletContext.contextPath}/member/list';
           break;
       }
 

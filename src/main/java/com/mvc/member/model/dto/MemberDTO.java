@@ -1,30 +1,28 @@
 package com.mvc.member.model.dto;
 
-import java.sql.Date;
-
 public class MemberDTO implements java.io.Serializable {
 
     private int memberCode; //회원 코드
     private String memberName; //회원 이름
-    private String memberBirth; //생년월일
+    private String birthDate; //생년월일
     private String divisionCode; //구매여부 구분코드
     private String detailInfo; //상세 정보
-    private String contact; //연락처
-    private int teamCode; //소속(레벨) 코드
+    private String phoneNum; //연락처
+    private int gradeCode; //소속(레벨) 코드
     private String activeStatus; //활동 상태
 
     public MemberDTO() {
     }
 
-    public MemberDTO(String memberCode, String memberName, String memberBirth, String divisionCode, String contact, String detailInfo, String teamCode, String activeStatus, int salary, double bonus, String managerId, Date hireDate, Date entDate, String entYn) {
+    public MemberDTO(String memberCode, String memberName, String birthDate, String divisionCode, String phoneNum, String detailInfo, int gradeCode, String activeStatus) {
         super();
         this.memberCode = Integer.parseInt(memberCode);
         this.memberName = memberName;
-        this.memberBirth = memberBirth;
+        this.birthDate = birthDate;
         this.divisionCode = divisionCode;
-        this.contact = contact;
+        this.phoneNum = phoneNum;
         this.detailInfo = detailInfo;
-        this.teamCode = Integer.parseInt(teamCode);
+        this.gradeCode = gradeCode;
         this.activeStatus = activeStatus;
     }
 
@@ -33,11 +31,11 @@ public class MemberDTO implements java.io.Serializable {
         return "MemberDTO{" +
                 "memberCode=" + memberCode +
                 ", memberName='" + memberName + '\'' +
-                ", memberBirth='" + memberBirth + '\'' +
+                ", birthDate='" + birthDate + '\'' +
                 ", divisionCode='" + divisionCode + '\'' +
                 ", detailInfo='" + detailInfo + '\'' +
-                ", phone='" + contact + '\'' +
-                ", gradeCode=" + teamCode +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", gradeCode=" + gradeCode +
                 ", activeStatus='" + activeStatus + '\'' +
                 '}';
     }
@@ -58,12 +56,12 @@ public class MemberDTO implements java.io.Serializable {
         this.memberName = memberName;
     }
 
-    public String getMemberBirth() {
-        return memberBirth;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setMemberBirth(String memberBirth) {
-        this.memberBirth = memberBirth;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getDivisionCode() {
@@ -82,20 +80,20 @@ public class MemberDTO implements java.io.Serializable {
         this.detailInfo = detailInfo;
     }
 
-    public String getContact() {
-        return contact;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
-    public int getTeamCode() {
-        return teamCode;
+    public int getGradeCode() {
+        return gradeCode;
     }
 
-    public void setTeamCode(int teamCode) {
-        this.teamCode = teamCode;
+    public void setGradeCode(int gradeCode) {
+        this.gradeCode = gradeCode;
     }
 
     public String getActiveStatus() {

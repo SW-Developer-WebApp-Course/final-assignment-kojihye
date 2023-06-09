@@ -10,8 +10,8 @@
         <tr>
             <th>회원번호</th>
             <th>회원이름</th>
-            <th>회원생년월일</th>
-            <th>구매여부 구분코드</th>
+            <th>생년월일</th>
+            <th>구매여부</th>
             <th>연락처</th>
             <th>상세정보</th>
             <th>등급코드</th>
@@ -21,11 +21,11 @@
             <tr>
                 <td>${ member.memberCode }</td>
                 <td>${ member.memberName }</td>
-                <td>${ member.memberBirth }</td>
+                <td>${ member.birthDate }</td>
                 <td>${ member.divisionCode }</td>
-                <td>${ member.contact }</td>
+                <td>${ member.phoneNum }</td>
                 <td>${ member.detailInfo }</td>
-                <td>${ member.teamCode }</td>
+                <td>${ member.gradeCode }</td>
                 <td>${ member.activeStatus }</td>
             </tr>
         </c:forEach>

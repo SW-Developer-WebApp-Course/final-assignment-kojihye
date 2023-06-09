@@ -17,12 +17,12 @@ public class InsertMemberServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        //memberCode는 Auto Incresement니까 insert할 때 사용하지 않음
+        //memberCode는 AutoIncrement라 insert할 때 사용하지 않음
         String memberName = request.getParameter("memberName"); //회원 이름
-        String memberBirth = request.getParameter("memberBirth"); //생년월일
+        String birthDate = request.getParameter("birthDate"); //생년월일
         String divisionCode = request.getParameter("divisionCode"); //구매여부 구분코드
         String detailInfo = request.getParameter("detailInfo"); //상세정보
-        String contact = request.getParameter("contact"); //연락처
+        String phoneNum = request.getParameter("phoneNum"); //연락처
         int gradeCode = Integer.parseInt(request.getParameter("gradeCode")); //소속코드
         String activeStatus	= request.getParameter("activeStatus"); //활동 상태
 
@@ -31,11 +31,11 @@ public class InsertMemberServlet extends HttpServlet {
         MemberDTO member = new MemberDTO();
 
         member.setMemberName(memberName);
-        member.setMemberBirth(memberBirth);
+        member.setBirthDate(birthDate);
         member.setDivisionCode(divisionCode);
         member.setDetailInfo(detailInfo);
-        member.setContact(contact);
-        member.setTeamCode(gradeCode);
+        member.setPhoneNum(phoneNum);
+        member.setGradeCode(gradeCode);
         member.setActiveStatus(activeStatus);
 
         System.out.println("insert request member : " + member);

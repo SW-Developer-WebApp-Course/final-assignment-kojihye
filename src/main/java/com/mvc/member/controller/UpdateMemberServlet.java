@@ -22,8 +22,8 @@ public class UpdateMemberServlet extends HttpServlet {
         String birthDate = request.getParameter("birthDate");
         String divisionCode = request.getParameter("divisionCode");
         String detailInfo = request.getParameter("detailInfo");
-        String contact = request.getParameter("contact");
-        int teamCode = Integer.parseInt(request.getParameter("teamCode"));
+        String phoneNum = request.getParameter("phoneNum");
+        int gradeCode = Integer.parseInt(request.getParameter("gradeCode"));
         String activeStatus = request.getParameter("activeStatus");
 
         MemberService memberService = new MemberService();
@@ -32,11 +32,11 @@ public class UpdateMemberServlet extends HttpServlet {
 
         member.setMemberCode(memberCode);
         member.setMemberName(memberName);
-        member.setMemberBirth(birthDate);
+        member.setBirthDate(birthDate);
         member.setDivisionCode(divisionCode);
         member.setDetailInfo(detailInfo);
-        member.setContact(contact);
-        member.setTeamCode(teamCode);
+        member.setPhoneNum(phoneNum);
+        member.setGradeCode(gradeCode);
         member.setActiveStatus(activeStatus);
 
         System.out.println("update request member = " + member);

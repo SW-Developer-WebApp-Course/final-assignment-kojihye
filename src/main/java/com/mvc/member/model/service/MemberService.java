@@ -4,7 +4,6 @@ import com.mvc.member.model.dao.MemberDAO;
 import com.mvc.member.model.dto.MemberDTO;
 import org.apache.ibatis.session.SqlSession;
 
-import java.io.PrintWriter;
 import java.util.List;
 
 import static com.mvc.common.Template.getSqlSession;
@@ -12,14 +11,12 @@ import static com.mvc.common.Template.getSqlSession;
 
 public class MemberService {
 
+    SqlSession sqlSession = getSqlSession();
     private MemberDAO memberDAO;
-
-
     public MemberService() {
         memberDAO = getSqlSession().getMapper(MemberDAO.class);
     }
 
-    SqlSession sqlSession = getSqlSession();
 
     /* 1. 멤버 1명을 멤버코드로 조회하는 기능을 담은 메소드 */
     public MemberDTO selectMemberByCode(int memberCode) {
@@ -74,7 +71,7 @@ public class MemberService {
 
         return result;
     }
-    /* 5. 멤버 1명을 멤버코드로 삭제하는 기능을 담은 메소드 */
+    /* 5. 멤버 1명을 삭제하는 기능을 담은 메소드 */
     public boolean deleteMember(int memberCode) {
 
         memberDAO = sqlSession.getMapper(MemberDAO.class);
